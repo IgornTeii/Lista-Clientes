@@ -1,5 +1,7 @@
 import { FastifyInstance, FastifyPluginOptions, FastifyRequest, FastifyReply } from "fastify";
 import { CreateCustomerController } from "./controllers/CreateCustomerController";
+import { ListCustomerService } from "./services/ListCustomerService";
+import { ListCustomerController } from "./controllers/ListCustomerController";
 
 export async function routes(fastify: FastifyInstance, options: FastifyPluginOptions) {
     fastify.get('/teste', async (request: FastifyRequest, replay: FastifyReply) => {
@@ -10,4 +12,7 @@ export async function routes(fastify: FastifyInstance, options: FastifyPluginOpt
     return new CreateCustomerController().handle(request, reply)
     })
 
+    fastify.get('/customers', async(request: FastifyRequest, reply: FastifyReply) =>{
+        return new ListCustomerController().handle(request, reply)
+        })
 }
